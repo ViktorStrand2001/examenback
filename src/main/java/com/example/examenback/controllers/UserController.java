@@ -21,6 +21,9 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@RequestBody UserModel userModel){
         try {
+            if (userService.doesUsernameAndEmailExist(userModel.getUsername(), userModel.getEmail())){
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
             UserModel createdUser = userService.createUser(userModel);
             return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
         }catch (Exception e){

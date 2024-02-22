@@ -37,4 +37,18 @@ public class UserService implements UserDetailsService {
 
         return iUserRepository.save(newUser);
     }
+
+    public boolean doesUsernameAndEmailExist(String username, String email) {
+        UserModel existingUsername = iUserRepository.findByUsername(username);
+        UserModel existingEmail = iUserRepository.findByEmail(email);
+
+        if (existingUsername != null){
+            return true;
+        }
+        if (existingEmail != null){
+            return true;
+        }
+        return false;
+    }
+
 }
