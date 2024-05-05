@@ -30,7 +30,7 @@ public class PostModel {
     private Date published;
 
     @ManyToOne
-    @JoinColumn(name = "users_username")
+    @JoinColumn(name = "users_id")
     private UserModel user;
 
 }
