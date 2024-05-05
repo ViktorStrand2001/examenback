@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,8 +35,9 @@ public class AuthController {
         return ResponseEntity.ok().body(new LoginRequest("TEST", "TEST2"));
     }
 
+
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<JwtAuthenticationResponse> login(@RequestBody LoginRequest loginRequest) {
         // Authenticate the user based on the credentials provided in the LoginRequest
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

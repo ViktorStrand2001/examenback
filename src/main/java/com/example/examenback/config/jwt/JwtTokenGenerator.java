@@ -29,6 +29,7 @@ public class JwtTokenGenerator {
         Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
 
         return Jwts.builder()
+                .claim("role", userDetails.getAuthorities())
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)

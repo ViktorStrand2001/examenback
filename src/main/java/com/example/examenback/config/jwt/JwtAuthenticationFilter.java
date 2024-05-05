@@ -39,6 +39,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
+        try{
         String jwt = getJwtFromRequest(request);
 
         if (StringUtils.hasText(jwt) && jwtTokenGenerator.validateToken(jwt)) {
@@ -55,9 +56,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
         }
-
-        filterChain.doFilter(request, response);
-
+            filterChain.doFilter(request, response);
+        }catch (Exception e) {
+        logger.error("An error occurred in JwtAuthenticationFilter: " + e.getMessage(), e);
+        throw new ServletException("Internal server error", e);
+        }
     }
 
 }

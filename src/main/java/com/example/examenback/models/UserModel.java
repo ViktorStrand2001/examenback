@@ -1,6 +1,7 @@
 package com.example.examenback.models;
 
 import com.example.examenback.enums.Roles;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -10,10 +11,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -45,6 +47,9 @@ public class UserModel implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Roles roles;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<PostModel> posts;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
