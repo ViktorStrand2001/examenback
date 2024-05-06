@@ -33,4 +33,12 @@ public class PostModel {
     @JoinColumn(name = "users_id")
     private UserModel user;
 
+    @Override
+    public String toString() {
+        return "PostModel{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", published=" + published +
+                '}';
+    }
 }

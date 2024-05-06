@@ -88,5 +88,14 @@ public class UserModel implements UserDetails {
     public boolean isEnabled() {
         return accountEnabled;
     }
-}
 
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
+}
