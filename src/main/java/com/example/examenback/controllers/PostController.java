@@ -26,9 +26,11 @@ public class PostController {
 
     @PostMapping("/create")
     public ResponseEntity<PostModel> createPost(@RequestBody PostModel postModel){
-
-        postService.createPost(postModel);
-
+        try{
+            postService.createPost(postModel);
+        }catch (Exception e){
+            System.out.println("Error: " + e.getMessage() + e);
+        }
         return new ResponseEntity<>(postModel, HttpStatus.CREATED);
     }
 

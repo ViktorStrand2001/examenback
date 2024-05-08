@@ -24,8 +24,19 @@ public class PostModel {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @Column(nullable = false)
     private String content;
 
+    @Column( nullable = false)
+    private String phoneNumber;
+
+    @Column(nullable = false)
+    private String eMail;
+
+    @Column(nullable = false)
+    private String huntingParty;
+
+    @Column(nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date published;
 
