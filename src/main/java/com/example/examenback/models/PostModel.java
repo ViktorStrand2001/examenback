@@ -24,7 +24,7 @@ public class PostModel {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 600)
     private String content;
 
     @Column( nullable = false)
