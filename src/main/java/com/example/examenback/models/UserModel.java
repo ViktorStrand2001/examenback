@@ -1,6 +1,7 @@
 package com.example.examenback.models;
 
 import com.example.examenback.enums.Roles;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -51,6 +52,7 @@ public class UserModel implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Roles roles;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<PostModel> posts;
 
