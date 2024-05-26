@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('USERPOST')")
+    @PreAuthorize("hasAuthority('USERPUT')")
     public ResponseEntity<UserModel> updateUser(@RequestBody UserModel user) {
 
         UserModel updatedUser = userService.updateUser(user);
